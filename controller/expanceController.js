@@ -26,3 +26,13 @@ exports.deleteExpance = async (req,res) => {
         return res.status(500).json({errors:true,message:error.message})
     }
 }
+
+exports.expanceFindById = async (req,res) => {
+    try {
+        const data = await Expance.findById(req.params.id)
+        res.json({errors:false,data:data})
+    } catch (error) {
+        return res.status(500).json({errors:true,message:error.message})
+    }
+    
+}
