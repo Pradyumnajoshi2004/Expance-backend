@@ -1,0 +1,34 @@
+const mongoose = require("mongoose")
+const express = require("express")
+require("dotenv/config")
+const cors = require("cors")
+const expanceRoute = require("./route/expanceRoute")
+const app = express()
+// middleware
+
+app.get("/",(req,res)=>{
+    res.send("home")
+})
+
+app.use(express.json())
+app.use(cors())
+
+
+app.use("/api/expance",expanceRoute)
+
+// connection
+
+app.listen(process.env.PORT || 5000)
+
+async function db() {
+    try {
+        const res = await mongoose.connect(process.env.DB)
+        console.log(res.STATES.connected);
+        
+    } catch (error) {
+        console.log(error.message);
+        
+    }
+}
+
+db()
