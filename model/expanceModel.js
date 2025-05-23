@@ -9,8 +9,14 @@ const expanceSchmea = new mongoose.Schema({
         type:Number,
         required : true
     },
-    date:{
-        type:Date
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    type: {
+        type: String,
+        enum: ["income", "expense"],
+        required: true
     }
 })
 

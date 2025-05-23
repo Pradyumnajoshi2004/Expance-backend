@@ -3,6 +3,9 @@ const express = require("express")
 require("dotenv/config")
 const cors = require("cors")
 const expanceRoute = require("./route/expanceRoute")
+const calculateExpanceRoute = require("./route/calculateExpance")
+
+
 const app = express()
 // middleware
 
@@ -15,6 +18,7 @@ app.use(cors())
 
 
 app.use("/api/expance",expanceRoute)
+app.use("/api/calcuate",calculateExpanceRoute)
 
 // connection
 
@@ -24,10 +28,8 @@ async function db() {
     try {
         const res = await mongoose.connect(process.env.DB)
         console.log(res.STATES.connected);
-        
     } catch (error) {
         console.log(error.message);
-        
     }
 }
 
