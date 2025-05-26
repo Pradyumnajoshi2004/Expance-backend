@@ -4,6 +4,8 @@ require("dotenv/config")
 const cors = require("cors")
 const expanceRoute = require("./route/expanceRoute")
 const calculateExpanceRoute = require("./route/calculateExpance")
+const userRoute = require("./route/userRoute")
+
 
 
 const app = express()
@@ -17,8 +19,9 @@ app.use(express.json())
 app.use(cors())
 
 
-app.use("/api/expance",expanceRoute)
-app.use("/api/calcuate",calculateExpanceRoute)
+app.use("/api/expance", expanceRoute)
+app.use("/api/calcuate", calculateExpanceRoute)
+app.use("/api/user", userRoute)
 
 // connection
 
