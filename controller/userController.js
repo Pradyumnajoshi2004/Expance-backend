@@ -27,9 +27,13 @@ exports.postUser = async (req,res) => {
 exports.login = async (req,res) => {
     try {
         const isUserExists = await User.findOne({email : req.body.email})
+        console.log(isUserExists);
+        
         if(!isUserExists) return res.status(500).json({errors:true,message:"the email or password is invalid"})
         
-        const password = await bcryptjs.compare(isUserExists.password , req.body.password)
+        const password = await bcryptjs.compare(req.body.password,isUserExists.password)
+        console.log(password);
+        
         if(!password) return res.status(500).json({errors:true,message:"the email or password is invalid"})
 
         
