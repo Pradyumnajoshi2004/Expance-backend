@@ -13,7 +13,7 @@ exports.getUser = async (req,res) => {
 
 exports.postUser = async (req,res) => {
     try {
-        const isUserExists = await User.find({email : req.body.email})
+        const isUserExists = await User.findOne({email : req.body.email})
         if(isUserExists) return res.status(500).json({errors:true,message:"the user already exists"})
         
         req.body.password = await bcryptjs.hash(req.body.password,10)
@@ -26,7 +26,7 @@ exports.postUser = async (req,res) => {
 
 exports.login = async (req,res) => {
     try {
-        const isUserExists = await User.find({email : req.body.email})
+        const isUserExists = await User.findOne({email : req.body.email})
         if(!isUserExists) return res.status(500).json({errors:true,message:"the email or password is invalid"})
         
         const password = await bcryptjs.compare(isUserExists.password , req.body.password)
