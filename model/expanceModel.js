@@ -17,6 +17,10 @@ const expanceSchmea = new mongoose.Schema({
         type: String,
         enum: ["income", "expense"],
         required: true
+    },
+    user_id:{
+        type:mongoose.Types.ObjectId,
+        ref:"userModel"
     }
 })
 
