@@ -2,7 +2,7 @@ const Expance = require("../model/expanceModel")
 
 exports.getExpance = async (req,res) => {
     try {
-        const data = await Expance.find()
+        const data = await Expance.find().populate("user_id")
         return res.json({errors:false,data:data})
     } catch (error) {
         return res.status(500).json({errors:true,message:error.message})
